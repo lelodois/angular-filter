@@ -1,0 +1,15 @@
+<button
+  class="btn btn-xs"
+  [ngClass]="filterInstance.isFilterActive() ? 'btn-warning' : 'btn-primary'"
+  (click)="filterInstance.onActiveEvent()">
+
+  <span class="glyphicon"
+        [ngClass]="filterInstance.isFilterActive() ? 'glyphicon-remove' : 'glyphicon-filter'">
+  </span>
+  {{filterInstance.isFilterActive() ? 'Limpar filtro' : 'Filtrar itens'}}
+</button>
+<small>
+  <mark>{{filterInstance.filterableList().length}}</mark>
+  itens
+</small>
+

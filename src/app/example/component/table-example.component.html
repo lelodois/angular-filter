@@ -1,0 +1,79 @@
+<div class="row">
+  <fieldset>
+    <legend class="legend-title">
+      Multi column filter
+
+      <div class="pull-right">
+
+        <app-filter-button-selected
+          [filterInstance]="filterTable"
+          [filterType]="filterTable.filterWithEquals()"
+          [columnName]="'selected'">
+        </app-filter-button-selected>
+        <app-filter-button [filterInstance]="filterTable"></app-filter-button>
+
+      </div>
+    </legend>
+    <table class="table table-hover table-condensed table-striped">
+      <thead>
+      <tr *ngIf="filterTable.isFilterActive()">
+
+        <th class="text-center">
+          <input type="checkbox" (change)="onSelectFiltereds($event)"/>
+        </th>
+
+        <th width="200px">
+          <app-filter-column-input
+            [placeHolder]="'Identifier'"
+            [columnName]="'id'"
+            [filterInstance]="filterTable"
+            [filterType]="filterTable.filterWithEquals()">
+          </app-filter-column-input>
+        </th>
+
+        <th>
+          <app-filter-column-input
+            [placeHolder]="'Complete name'"
+            [columnName]="'name'"
+            [filterInstance]="filterTable"
+            [filterType]="filterTable.filterWithContains()">
+          </app-filter-column-input>
+        </th>
+
+        <th>Status</th>
+      </tr>
+      <tr *ngIf="filterTable.isFilterActive() == false">
+
+        <th class="text-center">
+          <input type="checkbox" (change)="onSelectAll($event)"/>
+        </th>
+
+        <th width="200px">Identifier</th>
+
+        <th>Complete name</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr class="text-center"
+          *ngFor="let rowObject of filterTable.filterableList()"
+          [ngClass]="onPaintItem(rowObject)">
+
+        <td>
+          <input type="checkbox"
+                 [checked]="rowObject.selected"
+                 (change)="item.selected = $event.target.checked"/>
+        </td>
+
+        <td class="text-left">
+          {{rowObject.id}}
+        </td>
+
+        <td class="text-left">
+          {{rowObject.name}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </fieldset>
+</div>

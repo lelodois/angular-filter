@@ -1,0 +1,13 @@
+<button
+  class="btn btn-xs btn-primary"
+  (click)="filterInstance.filterWithReset('false', columnName, filterType)">
+  <span class="glyphicon glyphicon-unchecked"></span>
+  Não Selecionados
+</button>
+
+<button
+  class="btn btn-xs btn-info"
+  (click)="filterInstance.filterWithReset('true', columnName, filterType)">
+  <span class="glyphicon glyphicon-check"></span>
+  Selecionados
+</button>
